@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ task.id ? 'Edit task' : 'New task' }}{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <section class="col-xs-12">
+                {{ form_start(form, { attr: { novalidate: 'novalidate' } }) }}
+                    {% for field in form %}
+                        {% if field != form._token %}
+                            <div class="form-group {{ not field.vars.valid ? 'has-error' : '' }}">
+                                {{ form_errors(field) }}
+                                {{ form_label(field) }}
+                                {{ form_widget(field) }}
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                    <hr/>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-default"><i class="fa fa-save"></i> Guardar</button>
+                    </div>
+                {{ form_end(form) }}
+            </section>
+        </div>
+    </div>
+{% endblock %}

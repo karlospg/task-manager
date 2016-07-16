@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}
+            <link rel="stylesheet" type="text/css" media="screen" href="{{ asset("bundles/app/css/vendor/bootstrap.min.css") }}">
+            <link href="{{ asset('bundles/app/fonts/font-awesome/css/font-awesome.css') }}" rel="stylesheet">
+            <style>
+                .container {
+                    margin-top: 15px;
+                }
+
+            </style>
+        {% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    <body>
+        {% block body %}{% endblock %}
+        {% block javascripts %}
+            <script src="{{ asset("bundles/app/js/vendor/jquery-1.11.1.min.js") }}"></script>
+            <script src="{{ asset("bundles/app/js/vendor/bootstrap.min.js") }}"></script>
+            <script src="{{ asset("bundles/app/js/vendor/bootstrap-waitingfor.js") }}"></script>
+            <script>
+                (function($) {
+                    setInterval(function() {$('.flash-box').hide('slow')}, 5000);
+                })(jQuery);
+            </script>
+        {% endblock %}
+    </body>
+</html>

@@ -1,0 +1,20 @@
+{% for task in tasks %}
+    <tr>
+        <td align="left"><a href="{{ path('edit_task', { task: task.id }) }}">{{ task.name }}</a></td>
+        <td align="left">{{ task.order }}</td>
+        <td align="left">
+            {% if not loop.first %}
+                <a href="{{ path('move_task', { task: task.id, direction: 'up' }) }}" title="Move up" class="move-task"><i class="fa fa-chevron-up"></i></a>
+            {% endif %}
+            {% if not loop.last %}
+                <a href="{{ path('move_task', { task: task.id, direction: 'down' }) }}" title="Move down" class="move-task"><i class="fa fa-chevron-down"></i></a>
+            {% endif %}
+            <a href="{{ path('edit_task', { task: task.id }) }}" title="Edit"><i class="fa fa-pencil"></i></a>
+            <a href="{{ path('delete_task', { task: task.id }) }}" title="Delete" class="delete-task"><i class="fa fa-trash"></i></a>
+        </td>
+    </tr>
+{% else %}
+    <tr>
+        <td colspan="3">No results</td>
+    </tr>
+{% endfor %}

@@ -1,0 +1,89 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Task manager{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        section {
+            margin-top: 15px;
+            text-align: center;
+        }
+
+    </style>
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+
+        {% for flashMessage in app.session.flashbag.get('info') %}
+            <div class="alert alert-success flash-box">
+                <button data-dismiss="alert" class="close">
+                    ×
+                </button>
+                <i class="fa-fw fa fa-check"></i>
+                {{ flashMessage | raw }}
+            </div>
+        {% endfor %}
+
+        <div class="row">
+            <aside class="col-xs-12 col-sm-4">
+                <a href="{{ path('new_task') }}" class="btn btn-default"><i class="fa fa-plus"></i> New task</a>
+            </aside>
+            <section class="col-xs-12 col-sm-8">
+                <div class="table-responsive">
+                    <table id="tasks-table" class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Order</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% include 'AppBundle:Default:_tasks.html.twig' %}
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        (function($) {
+            $(document).on('click', '.delete-task', function(e) {
+                e.preventDefault();
+                if (confirm('Are you sure?')) {
+                    location.href = $(this).attr('href');
+                }
+            });
+
+            $(document).on('click', '.move-task', function(e) {
+                e.preventDefault();
+                waitingDialog.show('Loading, wait please...');
+                var button = $(this);
+                $.ajax({
+                    type: 'GET',
+                    url: $(button).attr('href'),
+                    success: function (data) {
+                        waitingDialog.hide();
+                        if (data.status == 'OK') {
+                            $('#tasks-table').find('tbody').html(data.content);
+                        }
+                        else {
+                            alert('An error happened, please try it again');
+                        }
+                    },
+                    error: function (data) {
+                        alert('An error happened, please try it again');
+                        waitingDialog.hide();
+                    }
+                });
+            });
+        })(jQuery);
+    </script>
+{% endblock %}
