@@ -38,6 +38,7 @@
         <mkdir dir="${builddir}/coverage"/>
         <mkdir dir="${builddir}/logs"/>
         <mkdir dir="${builddir}/pdepend"/>
+        <mkdir dir="${builddir}/docs"/>
     </target>
 
     <target name="lint" description="Perform syntax check of sourcecode files">
