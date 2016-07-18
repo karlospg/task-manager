@@ -115,7 +115,7 @@
 
     <target name="phpdoc" description="Generate API documentation using phpDox">
         <exec executable="phpdoc">
-            <arg line="-d '${sourcedir}' -t '${builddir}/docs' --ti='Tempo' " />
+            <arg line="-d '${sourcedir}' -t '${builddir}/docs' -ti 'Tempo' " />
         </exec>
     </target>
 
