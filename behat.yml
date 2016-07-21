@@ -1,7 +1,0 @@
-default:
-  extensions:
-    Behat\Symfony2Extension: ~
-    Behat\MinkExtension:
-      goutte: ~
-      selenium2: ~
-      base_url: http://tm.localhost:8888/app_dev.php
