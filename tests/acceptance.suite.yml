@@ -1,0 +1,7 @@
+class_name: AcceptanceTester
+modules:
+    enabled:
+        - WebDriver:
+            url: 'https://tm.localhost:8888/'
+            browser: firefox
+        - \Helper\Acceptance
