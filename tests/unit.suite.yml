@@ -1,4 +1,12 @@
 class_name: UnitTester
 modules:
     enabled:
+        - Asserts
         - \Helper\Unit
+        - Db
+        - Symfony2:
+            app_path: 'app'
+            var_path: 'app'
+            environment: 'test'
+        - Doctrine2:
+            depends: Symfony2

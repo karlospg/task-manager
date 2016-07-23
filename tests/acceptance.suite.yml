@@ -2,6 +2,8 @@ class_name: AcceptanceTester
 modules:
     enabled:
         - WebDriver:
-            url: 'https://tm.localhost:8888/'
+            url: 'http://tm.localhost:8888'
             browser: firefox
+    #   - PhpBrowser:
+    #       url: http://tm.localhost:8888
         - \Helper\Acceptance
